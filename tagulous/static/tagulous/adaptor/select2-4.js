@@ -114,7 +114,8 @@
             quotedTags: true,
             allowClear: !options.required,
             maximumSelectionLength: isSingle ? null : options.max_count || null,
-            spaceDelimiter: options.space_delimiter !== false
+            spaceDelimiter: options.space_delimiter !== false,
+            placeholder: options.placeholder || '',
         });
 
         // Add in any specific to the field type
@@ -169,6 +170,7 @@
         var $selectCtl = $selectEl.select2(args);
 
         if (selectedTags.length > 0) {
+          if (url) {
           var selectedData = [];
           for (var i=0; i<selectedTags.length; i++) {
             var option = new Option(selectedTags[i], selectedTags[0], true, true);
@@ -182,6 +184,10 @@
               data: selectedData,
             }
           });
+          } else {
+            $selectCtl.val(selectedTags);
+            $selectCtl.trigger("change");
+          }
         }
 
         // Ensure select2 data makes it back into the form field for submission
