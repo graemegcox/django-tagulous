@@ -165,6 +165,14 @@
         var $inputEl = $el;
         var $selectEl = $('<select/>').width($el.width());
 
+        // Merge bugfix ggc
+        if (isSingle) {
+          // Add an empty option so the placeholder takes effect
+          // This prevents us accidentally selecting the first value
+          var option = new Option('', '', true, true);
+          $selectEl.append(option).trigger('change');
+        }
+
         // Swap in
         $selectEl.insertAfter($inputEl.hide());
         var $selectCtl = $selectEl.select2(args);
