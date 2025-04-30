@@ -444,7 +444,7 @@ class TaggedModel(models.Model):
                     # ManyToOneRel and ManyToManyRel objects have no attribute
                     # contribute_to_class
                     if isinstance(field, (models.ManyToOneRel, models.ManyToManyRel,
-                                          django.contrib.contenttypes.fields.GenericRelation)):
+                                          django.contrib.contenttypes.fields.GenericRel)):
                         continue
                     # Find fields which are either TagFields, or not M2Ms -
                     # anything which Deserializer will have stored data for
@@ -462,7 +462,7 @@ class TaggedModel(models.Model):
         # Add fields to fake model
         for field in fields:
             if isinstance(field, (models.ManyToOneRel, models.ManyToManyRel,
-                                  django.contrib.contenttypes.fields.GenericRelation)):
+                                  django.contrib.contenttypes.fields.GenericRel)):
                 # ManyToOneRel and ManyToManyRel objects have no attribute
                 # contribute_to_class
                 continue
